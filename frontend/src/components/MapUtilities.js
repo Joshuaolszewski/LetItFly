@@ -91,4 +91,16 @@ function createMap(mapContainer, centerCoords) {
   });
 }
 
+
+function createMarker() {
+    return googleApiLoader.importLibrary("maps").then(({ Map }) => {
+        var myLatlng = new LatLng(-25.363882, 131.044922);
+        var marker = new Marker({
+            position: myLatlng,
+            title: "Hello World!"
+        });
+        return marker;
+    });
+}
+
 export { googleApiLoader, autocomplete, geocode, createMap, getDirections };
