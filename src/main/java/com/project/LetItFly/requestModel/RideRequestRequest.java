@@ -16,4 +16,13 @@ public class RideRequestRequest {
     private double curLong;
     private double destLat;
     private double destLong;
+    private int passengerId;
+    private int driverId;
+    private String date;
+    private String timeRequest;
+    private String duration;
+    private double cost;
+    private String pickupLocation;
+    private String destination;
+    private boolean start; // default: false if not passed in
 }

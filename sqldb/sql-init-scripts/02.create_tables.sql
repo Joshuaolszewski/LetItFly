@@ -37,6 +37,8 @@ CREATE TABLE driver_status(
 		user_id INT,
         dispatch BOOLEAN, 
         seat_available INT,
+        cur_lat DECIMAL(10, 8),
+        cur_long DECIMAL(11, 8),
         CONSTRAINT driver_status_user_fk FOREIGN KEY (user_id) REFERENCES user(id));
 
 CREATE TABLE vehicle(
@@ -64,7 +66,7 @@ CREATE TABLE user_role(
         CONSTRAINT user_role_role_fk FOREIGN KEY (role_id) REFERENCES role(id));
         
 
--- time duration: hh-mm-ss
+-- time duration: "45 mins"
 CREATE TABLE history_log(
 		id INT PRIMARY KEY AUTO_INCREMENT,
         driver_id INT,
@@ -73,7 +75,7 @@ CREATE TABLE history_log(
         pickup_location VARCHAR(150),
         destination VARCHAR(150),
         distance DOUBLE,
-        time_duration TIME,
+        time_duration VARCHAR(50),
         cost DOUBLE,
         CONSTRAINT history_log_user_fk1 FOREIGN KEY (driver_id) REFERENCES user(id),
         CONSTRAINT history_log_user_fk2 FOREIGN KEY (passenger_id) REFERENCES user(id));
@@ -83,4 +85,16 @@ CREATE TABLE ride_request(
         cur_lat DECIMAL(10, 8),
         cur_long DECIMAL(11, 8),
         dest_lat DECIMAL(10, 8),
-        dest_long DECIMAL(11, 8));
+        dest_long DECIMAL(11, 8),
+        passenger_id INT,
+        driver_id INT,
+        date DATE,
+        time_request TIME,
+        duration VARCHAR(50),
+        cost DOUBLE,
+        pickup_location VARCHAR(255),
+        destination VARCHAR(255),
+        start BOOLEAN,
+        CONSTRAINT ride_request_user_fk1 FOREIGN KEY (passenger_id) REFERENCES user(id),
+        CONSTRAINT ride_request_user_fk2 FOREIGN KEY (driver_id) REFERENCES user(id)
+        );

@@ -49,7 +49,15 @@ function autocomplete(inputElement, callback) {
  */
 var directionsRenderer;
 var directionsService;
-function getDirections(currentLocation, destinationLocation, currentMap) {
+function getDirections(
+  currentLocation,
+  destinationLocation,
+  currentMap,
+  currentRoute,
+  setDistance,
+  setDuration,
+  setCost
+) {
   googleApiLoader
     .importLibrary("routes")
     .then(({ DirectionsService, DirectionsRenderer }) => {
@@ -73,6 +81,22 @@ function getDirections(currentLocation, destinationLocation, currentMap) {
         if (status === "OK") {
           directionsRenderer.setDirections(results);
         } else console.log("Directions Failed: ", status);
+        currentRoute.current = {
+          distance: results.routes[0].legs[0].distance.text,
+          duration: results.routes[0].legs[0].duration.text,
+          cost: (
+            (Number(results.routes[0].legs[0].distance.value) / 1609.34 - 2) /
+              5 +
+            15
+          ).toFixed(2),
+          startLat: results.routes[0].legs[0].start_location.lat(),
+          startLng: results.routes[0].legs[0].start_location.lng(),
+          endLat: results.routes[0].legs[0].end_location.lat(),
+          endLng: results.routes[0].legs[0].end_location.lng(),
+        };
+        setDistance(currentRoute.current.distance);
+        setDuration(currentRoute.current.duration);
+        setCost(currentRoute.current.cost);
       });
     });
 }

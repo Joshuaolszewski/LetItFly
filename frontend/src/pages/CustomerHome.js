@@ -1,17 +1,21 @@
 import Header from "../components/Header";
 import Map from "../components/Map";
-import History from "../components/History";
 import SearchBar from "../components/SearchBar";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-
-/**
- * ISSUES:
- *  - user location accuracy is low, only an estimate [SOMEWHAT FIXED, NEED TO MONITOR AND CONFIRM]
- */
 
 function CustomerHome() {
   const currentMap = useRef();
+  const currentRoute = useRef();
+  const {
+    state: {
+      tokenObject: { email: userEmail },
+    },
+  } = useLocation();
+
+  const [distance, setDistance] = useState("0 mi");
+  const [duration, setDuration] = useState("0 mins");
+  const [cost, setCost] = useState("0$");
 
   // wrap user location in a promise
   const userLocation = new Promise((resolve, reject) => {
@@ -30,15 +34,23 @@ function CustomerHome() {
     }
   });
 
-  // const location = useLocation();
-  // console.log("logging cookie:", location.state);
-
   return (
     <>
-      <Header />
-      <SearchBar currentMap={currentMap} userLocation={userLocation} />
+      <Header userEmail={userEmail} />
+      <SearchBar
+        currentMap={currentMap}
+        userLocation={userLocation}
+        currentRoute={currentRoute}
+        setDistance={setDistance}
+        setDuration={setDuration}
+        setCost={setCost}
+      />
       <Map currentMap={currentMap} userLocation={userLocation} />
-      <History />
+      <div className="route-details">
+        <h2>Distance: {distance}</h2>
+        <h2>Duration: {duration}</h2>
+        <h2>Cost: {cost}</h2>
+      </div>
     </>
   );
 }

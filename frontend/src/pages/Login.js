@@ -15,22 +15,23 @@ function Login() {
     console.log("hello");
     const loginInfo = { email, password };
     console.log(loginInfo);
-    fetch("http://localhost:8080/login", {
+
+    const proxy = process.env.REACT_APP_BACKEND_BASE_URL;
+
+    fetch(`${proxy}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(loginInfo),
-    }).then((response) => {
-      console.log(response);
-      if (response.ok) {
-        return response.json();
-        }
-        else if (response.status === 401) {
+    })
+      .then((response) => {
+        console.log(response);
+        if (response.ok) {
+          return response.json();
+        } else if (response.status === 401) {
           console.log("Invalid username or password");
-        }
-        else if (response.status === 403) {
+        } else if (response.status === 403) {
           console.log("Account is disabled");
-        }
-        else if (response.status === 423) {
+        } else if (response.status === 423) {
           console.log("Account is locked");
         }
       })
@@ -38,13 +39,14 @@ function Login() {
         console.log(tokenObject);
         const authenticationObject = tokenObject;
         console.log(authenticationObject.token);
-        navigate("/customer", {state:{tokenObject}});
-        })
-    .catch((error) => {
-      console.error("Login failed:", error);
-    });
-  };
-
+        tokenObject.roleName === "ROLE_DRIVER"
+          ? navigate("/driver", { state: { tokenObject } })
+          : navigate("/customer", { state: { tokenObject } });
+      })
+      .catch((error) => {
+        console.error("Login failed:", error);
+      });
+  }
 
   return (
     <div
@@ -55,15 +57,12 @@ function Login() {
         height: "100vh",
         background: "goldenrod",
         backdropFilter: "blur(8px)",
-       
       }}
     >
-      
       <Paper
         elevation={3}
         style={{ padding: "20px", margin: "0 auto", maxWidth: "90vw" }}
       >
-    
         <h2 style={{ textAlign: "center" }}>Login</h2>
         <form onSubmit={handleSubmit}>
           <TextField

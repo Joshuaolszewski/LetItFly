@@ -29,17 +29,11 @@ INSERT INTO vehicle (license_plate, make, model, year, type, user_id) VALUES
 		("1ABC234", "subaru", "outback", 2008, "sedan", 10000); 
         
 -- Insert initial data for driver_status table
-INSERT INTO driver_status (user_id, dispatch, seat_available) VALUES
-		(10000, TRUE, 4); 
+INSERT INTO driver_status (user_id, dispatch, seat_available, cur_lat, cur_long) VALUES
+		(10000, FALSE, 4, 37.355555, -121.900000); 
         
 -- Insert initial data for history_log table
 INSERT INTO history_log (driver_id, passenger_id, date, pickup_location, destination, distance, time_duration, cost) VALUES
-		(10000, 10001, "2023-12-06", "9th Street, San Jose, CA 95100", "Airport Way, San Francisco, CA 95334", 23.8, "02:12", 36.50),
-        (10000, 10001, "2023-12-15", "Airport Way, San Francisco, CA 95334", "9th Street, San Jose, CA 95100", 23.8, "02:20", 32.50);
-
--- Insert initial data for ride_request
-INSERT INTO ride_request (cur_lat, cur_long, dest_lat, dest_long) VALUES
-		(37.335436, -121.909424, 37.615223, -122.389977),
-        (37.349372, -121.896864, 37.363949, -121.928940),
-        (37.535419, -121.986426, 37.715907, -122.213771);
+		(10000, 10001, "2023-12-06", "9th Street, San Jose, CA 95100", "Airport Way, San Francisco, CA 95334", 23.8, "45 mins", 36.50),
+        (10000, 10001, "2023-12-15", "Airport Way, San Francisco, CA 95334", "9th Street, San Jose, CA 95100", 23.8, "25 mins", 32.50);
         

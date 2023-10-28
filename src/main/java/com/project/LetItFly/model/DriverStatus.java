@@ -1,5 +1,7 @@
 package com.project.LetItFly.model;
 
+import com.project.LetItFly.requestModel.DriverStatusRequest;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,7 +11,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "driver_status")
 public class DriverStatus {
@@ -28,51 +38,18 @@ public class DriverStatus {
     @Column(name = "seat_available")
     private int seatAvailable;
 
-    public DriverStatus() {
-    }
+    @Column(name = "curLat")
+    private double curLat;
 
-    public DriverStatus(User userId, boolean dispatch, int seatAvailable) {
-        this.userId = userId;
-        this.dispatch = dispatch;
-        this.seatAvailable = seatAvailable;
-    }
+    @Column(name = "curLong")
+    private double curLong;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
-    }
-
-    public boolean isDispatch() {
-        return dispatch;
-    }
-
-    public void setDispatch(boolean dispatch) {
-        this.dispatch = dispatch;
-    }
-
-    public int getSeatAvailable() {
-        return seatAvailable;
-    }
-
-    public void setSeatAvailable(int seatAvailable) {
-        this.seatAvailable = seatAvailable;
-    }
-
-    @Override
-    public String toString() {
-        return "DriverStatus [id=" + id + ", userId=" + userId + ", dispatch=" + dispatch + ", seatAvailable="
-                + seatAvailable + "]";
+    public DriverStatus(DriverStatusRequest dsRequest) {
+        this.id = dsRequest.getId();
+        this.dispatch = dsRequest.isDispatch();
+        this.seatAvailable = dsRequest.getSeatAvailable();
+        this.curLat = dsRequest.getCurLat();
+        this.curLong = dsRequest.getCurLong();
     }
 
 }

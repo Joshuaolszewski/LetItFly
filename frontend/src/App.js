@@ -15,6 +15,11 @@ import DriverSettings from "./pages/DriverSettings";
 import DriverRide from "./pages/DriverRide";
 import DriverHistory from "./pages/DriverHistory";
 
+/**
+ * ISSUES:
+ *  - Change hardcoded urls to use base url from .env.local
+ */
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(

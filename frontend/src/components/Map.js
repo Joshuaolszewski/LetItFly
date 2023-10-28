@@ -1,8 +1,14 @@
+import { useEffect } from "react";
 import "../css/Home.css";
 import { createMap } from "./MapUtilities";
 import { createMarker } from "../components/MapUtilities";
 
 function Map({ currentMap, userLocation }) {
+  useEffect(() => {
+    if (!currentMap.current) {
+      initMap();
+    }
+  });
   function initMap() {
     userLocation.then((location) => {
       const map = createMap(
@@ -17,7 +23,7 @@ function Map({ currentMap, userLocation }) {
     });
   }
 
-  initMap();
+  // initMap();
 
   return (
     <>
