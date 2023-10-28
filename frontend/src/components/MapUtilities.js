@@ -120,15 +120,19 @@ function createMarker(map) {
     return googleApiLoader.importLibrary("marker").then(({ Marker }) => {
         const image =
             "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
-        const marker = new Marker({
-            position: { lat: 37.35646273790564, lng: -121.89294433357483 },
-            map: map,
-            icon: image,
-        });
-        //marker.setMap(map);
-        console.log("Marker", marker);
-        //console.log("THIS IS THE MAP qweeqw: ", map);
-       // return marker;
+
+        map.then(( actualMap ) => {
+            const marker = new Marker({
+                position: { lat: 37.35646273790564, lng: -121.89294433357483 },
+                map: actualMap,
+                icon: image,
+            });
+            //marker.setMap(map);
+            //console.log("Marker", marker);
+            //console.log("THIS IS THE MAP qweeqw: ", map);
+            return marker;
+        })
+
     });
 }
 
