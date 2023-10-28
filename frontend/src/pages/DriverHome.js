@@ -4,6 +4,7 @@ import History from "../components/History";
 import SearchBar from "../components/SearchBar";
 import { useRef } from "react";
 import { useLocation } from "react-router-dom";
+import { createMarker } from "../components/MapUtilities";
 
 function DriverHome() {
     const currentMap = useRef();
@@ -20,12 +21,6 @@ function DriverHome() {
                 },
                 { enableHighAccuracy: true, maximumAge: 1, timeout: 15000 }
             );
-
-            // make marker
-            var marker = new google.maps.Marker({
-                position: myLatlng,
-                title: "Hello World!"
-            });
         } else {
             reject(null);
         }

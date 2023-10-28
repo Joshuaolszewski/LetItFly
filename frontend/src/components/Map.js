@@ -1,5 +1,6 @@
 import "../css/Home.css";
 import { createMap } from "./MapUtilities";
+import { createMarker } from "../components/MapUtilities";
 
 function Map({ currentMap, userLocation }) {
   function initMap() {
@@ -8,7 +9,11 @@ function Map({ currentMap, userLocation }) {
         document.getElementsByClassName("map-container")[0],
         location
       );
-      currentMap.current = map;
+        currentMap.current = map;
+        // make marker
+        const marker = createMarker(
+            map
+        );
     });
   }
 

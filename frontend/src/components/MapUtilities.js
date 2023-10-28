@@ -92,15 +92,20 @@ function createMap(mapContainer, centerCoords) {
 }
 
 
-function createMarker() {
-    return googleApiLoader.importLibrary("maps").then(({ Map }) => {
-        var myLatlng = new LatLng(-25.363882, 131.044922);
-        var marker = new Marker({
-            position: myLatlng,
-            title: "Hello World!"
+function createMarker(map) {
+    return googleApiLoader.importLibrary("marker").then(({ Marker }) => {
+        const image =
+            "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+        const marker = new Marker({
+            position: { lat: 37.35646273790564, lng: -121.89294433357483 },
+            map: map,
+            icon: image,
         });
-        return marker;
+        //marker.setMap(map);
+        console.log("Marker", marker);
+        //console.log("THIS IS THE MAP qweeqw: ", map);
+       // return marker;
     });
 }
 
-export { googleApiLoader, autocomplete, geocode, createMap, getDirections };
+export { googleApiLoader, autocomplete, geocode, createMap, createMarker, getDirections };
