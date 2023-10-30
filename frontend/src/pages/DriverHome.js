@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import Map from "../components/Map";
+import DriverMap from "../components/DriverMap";
 import History from "../components/History";
 import SearchBar from "../components/SearchBar";
 import { useRef } from "react";
@@ -29,10 +29,11 @@ function DriverHome() {
     // const location = useLocation();
     // console.log("logging cookie:", location.state);
 
+
     return (
         <>
             <Header />
-            <Map currentMap={currentMap} userLocation={userLocation} />
+            <DriverMap currentMap={currentMap} userLocation={userLocation} />
             <History />
         </>
     );
