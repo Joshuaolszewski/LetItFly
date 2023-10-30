@@ -127,6 +127,14 @@ function createMarker(map) {
                 map: actualMap,
                 icon: image,
             });
+            //click event
+            marker.addListener("click", function () {
+                // Place your custom code here
+                //alert('Marker was clicked!');
+
+                // For example, to center the map at the marker's location:
+                actualMap.setCenter(marker.getPosition());
+            });
             //marker.setMap(map);
             //console.log("Marker", marker);
             //console.log("THIS IS THE MAP qweeqw: ", map);

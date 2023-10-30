@@ -20,6 +20,14 @@ function DriverMap({ currentMap, userLocation }) {
         const marker = createMarker(
             map
         );
+        //click event
+        marker.addListener("click", function () {
+            // Place your custom code here
+            alert('Marker was clicked!');
+
+            // For example, to center the map at the marker's location:
+            map.setCenter(marker.getPosition());
+        });
     });
     }
 

@@ -16,10 +16,6 @@ function Map({ currentMap, userLocation }) {
         location
       );
         currentMap.current = map;
-        // make marker
-        const marker = createMarker(
-            map
-        );
     });
   }
 
