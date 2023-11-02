@@ -1,16 +1,15 @@
 {
   "ExpandedNodes": [
     "",
+    "\\frontend",
+    "\\frontend\\src",
+    "\\frontend\\src\\components",
+    "\\frontend\\src\\css",
+    "\\frontend\\src\\Forms",
+    "\\frontend\\src\\pages",
     "\\src",
     "\\src\\main",
-    "\\src\\main\\java",
-    "\\src\\main\\java\\com",
-    "\\src\\main\\java\\com\\project",
-    "\\src\\main\\java\\com\\project\\LetItFly",
-    "\\src\\main\\java\\com\\project\\LetItFly\\configuration",
-    "\\src\\main\\java\\com\\project\\LetItFly\\controller",
     "\\src\\main\\resources"
   ],
-  "SelectedNode": "\\src\\main\\java\\com\\project\\LetItFly\\controller\\PaymentController.java",
   "PreviewInSolutionExplorer": false
 }
