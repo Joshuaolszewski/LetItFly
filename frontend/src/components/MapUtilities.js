@@ -1,5 +1,22 @@
 import { Loader } from "@googlemaps/js-api-loader";
 
+// wrap user location in a promise
+const userLocation = new Promise((resolve, reject) => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        resolve({ lat: latitude, lng: longitude });
+      },
+      (error) => {
+        console.log(error);
+      },
+      { enableHighAccuracy: true, maximumAge: 1, timeout: 15000 }
+    );
+  } else {
+    reject(null);
+  }
+});
+
 // reusable loader with api key
 const googleApiLoader = new Loader({
   apiKey: process.env.REACT_APP_GOOGLE_KEY,
@@ -58,6 +75,9 @@ function getDirections(
   setDuration,
   setCost
 ) {
+  setDistance = setDistance || 0;
+  setDuration = setDuration || 0;
+  setCost = setCost || 0;
   googleApiLoader
     .importLibrary("routes")
     .then(({ DirectionsService, DirectionsRenderer }) => {
@@ -115,6 +135,7 @@ function createMap(mapContainer, centerCoords) {
   });
 }
 
+<<<<<<< HEAD
 
 function createMarker(map) {
     return googleApiLoader.importLibrary("marker").then(({ Marker }) => {
@@ -145,3 +166,13 @@ function createMarker(map) {
 }
 
 export { googleApiLoader, autocomplete, geocode, createMap, createMarker, getDirections };
+=======
+export {
+  googleApiLoader,
+  autocomplete,
+  geocode,
+  createMap,
+  getDirections,
+  userLocation,
+};
+>>>>>>> 8c2da46d1e7038b7b42f09a2aca3085080e462ff

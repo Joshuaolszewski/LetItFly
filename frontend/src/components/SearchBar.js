@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "../css/Home.css";
 import { autocomplete, geocode, getDirections } from "./MapUtilities";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function SearchBar({
   currentMap,
@@ -12,6 +12,7 @@ function SearchBar({
   setCost,
 }) {
   const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     var inputElement = document.getElementsByClassName("search-bar")[0];
     autocomplete(inputElement, () => {
@@ -48,8 +49,6 @@ function SearchBar({
 
     // send a POST request to backend
     const url = `${proxy}/api/ride-request/save`;
-    console.log(currentRoute.current);
-    console.log(location.state.tokenObject.token);
     fetch(url, {
       method: "POST",
       headers: {
@@ -65,11 +64,12 @@ function SearchBar({
       }),
     })
       .then((response) => {
-        console.log(response);
         return response.json();
       })
       .then((data) => {
-        console.log("returned data: ", data);
+        navigate("/customer/ride", {
+          state: { rideRequestId: data, cookie: location.state.tokenObject },
+        });
       });
   }
 

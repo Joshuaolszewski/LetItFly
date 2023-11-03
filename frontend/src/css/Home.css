@@ -77,15 +77,16 @@ header {
   }
 }
 
-.map-container {
+.map-container,
+#ride-accepted-map {
   z-index: 10;
   border-radius: 1rem;
   display: block;
   margin: 20px auto;
   margin-bottom: -5px;
   width: 49%;
-  /* height: 50vh; */
-  height: 600px;
+  height: 50vh;
+  /* height: 600px; */
   border: 5px solid goldenrod;
 }
 
