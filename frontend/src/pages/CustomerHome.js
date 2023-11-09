@@ -30,6 +30,8 @@ function CustomerHome() {
         setDistance={setDistance}
         setDuration={setDuration}
         setCost={setCost}
+        setStartAddress={setStartAddress}
+        setEndAddress={setEndAddress}
       />
       <Map currentMap={currentMap} userLocation={userLocation} />
       <div className="route-details">
