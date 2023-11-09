@@ -17,6 +17,8 @@ function CustomerHome() {
   const [distance, setDistance] = useState("0 mi");
   const [duration, setDuration] = useState("0 mins");
   const [cost, setCost] = useState("0$");
+  const [startAddress, setStartAddress] = useState();
+  const [endAddress, setEndAddress] = useState();
 
   return (
     <>

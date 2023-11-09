@@ -61,6 +61,8 @@ function SearchBar({
         destLat: currentRoute.current.endLat,
         destLong: currentRoute.current.endLng,
         passengerId: location.state.tokenObject.id,
+        pickupLocation: currentRoute.current.startAddress,
+        destination: currentRoute.current.endAddress,
       }),
     })
       .then((response) => {

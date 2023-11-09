@@ -99,6 +99,9 @@ function getDirections(
   setDistance = setDistance || 0;
   setDuration = setDuration || 0;
   setCost = setCost || 0;
+  setStartAddress = setStartAddress || 0;
+  setEndAddress = setEndAddress || 0;
+
   googleApiLoader
     .importLibrary("routes")
     .then(({ DirectionsService, DirectionsRenderer }) => {
@@ -123,6 +126,7 @@ function getDirections(
 
       directionsService.route(request, (results, status) => {
         if (status === "OK") {
+          console.log(results);
           directionsRenderer.setDirections(results);
         } else console.log("Directions Failed: ", status);
         currentRoute.current = {
@@ -137,10 +141,14 @@ function getDirections(
           startLng: results.routes[0].legs[0].start_location.lng(),
           endLat: results.routes[0].legs[0].end_location.lat(),
           endLng: results.routes[0].legs[0].end_location.lng(),
+          startAddress: results.routes[0].legs[0].start_address,
+          endAddress: results.routes[0].legs[0].end_address,
         };
         if (setDistance) setDistance(currentRoute.current.distance);
         if (setDuration) setDuration(currentRoute.current.duration);
         if (setCost) setCost(currentRoute.current.cost);
+        if (setStartAddress) setStartAddress(currentRoute.current.startAddress);
+        if (setEndAddress) setEndAddress(currentRoute.current.endAddress);
       });
     });
 }
