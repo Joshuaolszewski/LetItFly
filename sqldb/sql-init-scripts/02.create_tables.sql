@@ -90,6 +90,7 @@ CREATE TABLE ride_request(
         driver_id INT,
         date DATE,
         time_request TIME,
+        distance VARCHAR(50),
         duration VARCHAR(50),
         cost DOUBLE,
         pickup_location VARCHAR(255),

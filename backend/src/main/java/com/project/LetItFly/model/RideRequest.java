@@ -55,6 +55,9 @@ public class RideRequest {
     @Column(name = "time_request")
     private String timeRequest;
 
+    @Column(name = "distance")
+    private String distance;
+
     @Column(name = "duration")
     private String duration;
 
@@ -78,6 +81,7 @@ public class RideRequest {
         this.destLong = r.getDestLong();
         this.date = r.getDate();
         this.timeRequest = r.getTimeRequest();
+        this.distance = r.getDistance();
         this.duration = r.getDuration();
         this.cost = r.getCost();
         this.pickupLocation = r.getPickupLocation();

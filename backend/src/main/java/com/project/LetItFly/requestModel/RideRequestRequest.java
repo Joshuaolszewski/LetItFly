@@ -20,6 +20,7 @@ public class RideRequestRequest {
     private int driverId;
     private String date;
     private String timeRequest;
+    private String distance;
     private String duration;
     private double cost;
     private String pickupLocation;

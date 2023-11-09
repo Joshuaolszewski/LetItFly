@@ -48,8 +48,8 @@ INSERT INTO history_log (driver_id, passenger_id, date, pickup_location, destina
         (10004, 10005, "2023-12-20", "Airport Way, San Francisco, CA 95334", "9th Street, San Jose, CA 95100", 23.8, "39 mins", 32.50);
         
 -- Insert initial data for ride_request from dummypassenger1, dummypassenger2, dummypassenger3
-INSERT INTO ride_request (cur_lat, cur_long, dest_lat, dest_long, passenger_id, date, time_request, duration, cost, start) VALUES
-		(37.335436, -121.909424, 37.615223, -122.389977, 10006, "2023-10-26", "14:00", "20 mins", "36.20", FALSE),
-        (37.349372, -121.896864, 37.363949, -121.928940, 10007, "2023-10-26", "14:12", "24 mins", "40.99", FALSE),
-        (37.535419, -121.986426, 37.715907, -122.213771, 10008, "2023-10-26", "14:14", "15 mins", "25.50", FALSE);
+INSERT INTO ride_request (cur_lat, cur_long, dest_lat, dest_long, passenger_id, date, time_request, distance, duration, cost, start) VALUES
+		(37.335436, -121.909424, 37.615223, -122.389977, 10006, "2023-10-26", "14:00", "20 mi", "20 mins", "36.20", FALSE),
+        (37.349372, -121.896864, 37.363949, -121.928940, 10007, "2023-10-26", "14:12", "25 mi", "24 mins", "40.99", FALSE),
+        (37.535419, -121.986426, 37.715907, -122.213771, 10008, "2023-10-26", "14:14", "27 mi", "15 mins", "25.50", FALSE);
 
